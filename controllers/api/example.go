@@ -18,6 +18,7 @@ func NewExampleSceneRouter(group *ginplus.RouterGroup) {
 		g.GET(":pk", c.Get)
 		g.GET("", c.List)
 		g.GET("all", c.All)
+		g.GET("distinct/:field", c.Distinct)
 		g.POST("", c.Create)
 		g.PUT(":pk", c.Update)
 		g.DELETE(":pk", c.Delete)

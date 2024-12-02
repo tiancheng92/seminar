@@ -23,3 +23,7 @@ type Example struct {
 	Number        int                 `json:"number" binding:"required"`
 	JsonFieldList model.JsonFieldList `json:"json_field_list"`
 }
+
+type Distinct struct {
+	Field string `uri:"field" binding:"required"`
+}

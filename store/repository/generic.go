@@ -59,6 +59,12 @@ func (r *genericRepository[M]) Get(pk any) (*M, error) {
 	return &ent, errors.WithCode(ecode.ErrGet, err)
 }
 
+func (r *genericRepository[M]) Distinct(field string) ([]string, error) {
+	var ent []string
+	err := r.db.Model(new(M)).Distinct().Pluck(field, &ent).Error
+	return ent, errors.WithCode(ecode.ErrGet, err)
+}
+
 func (r *genericRepository[M]) List(pq *paginate.Query) (*paginate.Data[M], error) {
 	r.paginateData.Init(pq)
 	err := r.db.Model(new(M)).Scopes(Paginate[M](pq)).Find(&r.paginateData.Items).Offset(-1).Limit(-1).Count(&r.paginateData.Total).Error

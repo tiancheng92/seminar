@@ -78,3 +78,7 @@ func (ros *readOnlyGenericService[M]) List(_ *ginplus.Context, pq *paginate.Quer
 func (ros *readOnlyGenericService[M]) All(ctx *ginplus.Context) ([]*M, error) {
 	return ros.repo.All(ctx.Request.URL.Query())
 }
+
+func (ros *readOnlyGenericService[M]) Distinct(_ *ginplus.Context, field string) ([]string, error) {
+	return ros.repo.Distinct(field)
+}

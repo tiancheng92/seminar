@@ -14,6 +14,7 @@ type GenericInterface[M model.Interface] interface {
 	List(pq *paginate.Query) (*paginate.Data[M], error)
 	Count(params url.Values) (int64, error)
 	All(params url.Values) ([]*M, error)
+	Distinct(field string) ([]string, error)
 }
 
 type ExampleRepoInterface interface {

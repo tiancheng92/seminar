@@ -17,6 +17,7 @@ type ReadOnlyGenericInterface[M model.Interface] interface {
 	Get(ctx *ginplus.Context, pk any) (*M, error)
 	List(ctx *ginplus.Context, pq *paginate.Query) (*paginate.Data[M], error)
 	All(ctx *ginplus.Context) ([]*M, error)
+	Distinct(ctx *ginplus.Context, field string) ([]string, error)
 }
 
 type ExampleServiceInterface interface {

@@ -29,6 +29,10 @@ func (c *genericController[R, M]) All(ctx *ginplus.Context) {
 	c.readOnlyGenericController.All(ctx)
 }
 
+func (c *genericController[R, M]) Distinct(ctx *ginplus.Context) {
+	c.readOnlyGenericController.Distinct(ctx)
+}
+
 func (c *genericController[R, M]) Create(ctx *ginplus.Context) {
 	r := new(R)
 	ctx.BindBody(r).HandleAndRender(func() (any, error) {
@@ -77,5 +81,12 @@ func (roc *readOnlyGenericController[M]) List(ctx *ginplus.Context) {
 func (roc *readOnlyGenericController[M]) All(ctx *ginplus.Context) {
 	ctx.HandleAndRender(func() (any, error) {
 		return roc.ReadOnlyGenericInterface.All(ctx)
+	})
+}
+
+func (roc *readOnlyGenericController[M]) Distinct(ctx *ginplus.Context) {
+	p := new(request.Distinct)
+	ctx.BindParams(&p).HandleAndRender(func() (any, error) {
+		return roc.ReadOnlyGenericInterface.Distinct(ctx, p.Field)
 	})
 }
