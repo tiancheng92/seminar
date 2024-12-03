@@ -18,16 +18,11 @@ func New() *Engine {
 }
 
 func (e *Engine) Group(relativePath string, handlers ...gin.HandlerFunc) *RouterGroup {
-	return newGroup(e.Engine.Group(relativePath, handlers...))
+	return &RouterGroup{e.Engine.Group(relativePath, handlers...)}
 }
 
 type Context struct {
 	*gin.Context
-}
-
-// cp 创建一个新的 Context 实例
-func newContext(ctx *gin.Context) *Context {
-	return &Context{ctx}
 }
 
 // do 执行函数，如果上下文没有被中止
@@ -64,7 +59,7 @@ func (c *Context) HandleAndRender(f any) {
 func (c *Context) BindBody(ptr any) *Context {
 	return c.do(func() {
 		if err := c.ShouldBind(ptr); err != nil {
-			c.renderValidationError(err)
+			render.Response(c.Context, nil, validator.HandleValidationErr(err))
 		}
 	})
 }
@@ -73,7 +68,7 @@ func (c *Context) BindBody(ptr any) *Context {
 func (c *Context) BindQuery(ptr any) *Context {
 	return c.do(func() {
 		if err := c.ShouldBindQuery(ptr); err != nil {
-			c.renderValidationError(err)
+			render.Response(c.Context, nil, validator.HandleValidationErr(err))
 		}
 	})
 }
@@ -82,7 +77,7 @@ func (c *Context) BindQuery(ptr any) *Context {
 func (c *Context) BindParams(ptr any) *Context {
 	return c.do(func() {
 		if err := c.ShouldBindUri(ptr); err != nil {
-			c.renderValidationError(err)
+			render.Response(c.Context, nil, validator.HandleValidationErr(err))
 		}
 	})
 }
@@ -91,7 +86,7 @@ func (c *Context) BindParams(ptr any) *Context {
 func (c *Context) BindHeader(ptr any) *Context {
 	return c.do(func() {
 		if err := c.ShouldBindHeader(ptr); err != nil {
-			c.renderValidationError(err)
+			render.Response(c.Context, nil, validator.HandleValidationErr(err))
 		}
 	})
 }
@@ -118,49 +113,40 @@ func (c *Context) BindPaginateQuery(ptr *paginate.Query) *Context {
 	})
 }
 
-// renderValidationError 渲染验证错误
-func (c *Context) renderValidationError(err error) {
-	render.Response(c.Context, nil, validator.HandleValidationErr(err))
-}
-
 type RouterGroup struct {
 	*gin.RouterGroup
 }
 
-func newGroup(g *gin.RouterGroup) *RouterGroup {
-	return &RouterGroup{g}
-}
-
 func (g *RouterGroup) Group(relativePath string, handlers ...gin.HandlerFunc) *RouterGroup {
-	return newGroup(g.RouterGroup.Group(relativePath, handlers...))
+	return &RouterGroup{g.RouterGroup.Group(relativePath, handlers...)}
 }
 
-func (g *RouterGroup) GET(relativePath string, f func(c *Context)) {
+func (g *RouterGroup) GET(relativePath string, f func(*Context)) {
 	g.RouterGroup.GET(relativePath, func(c *gin.Context) {
-		f(newContext(c))
+		f(&Context{c})
 	})
 }
 
-func (g *RouterGroup) POST(relativePath string, f func(c *Context)) {
+func (g *RouterGroup) POST(relativePath string, f func(*Context)) {
 	g.RouterGroup.POST(relativePath, func(c *gin.Context) {
-		f(newContext(c))
+		f(&Context{c})
 	})
 }
 
-func (g *RouterGroup) PUT(relativePath string, f func(c *Context)) {
+func (g *RouterGroup) PUT(relativePath string, f func(*Context)) {
 	g.RouterGroup.PUT(relativePath, func(c *gin.Context) {
-		f(newContext(c))
+		f(&Context{c})
 	})
 }
 
-func (g *RouterGroup) PATCH(relativePath string, f func(c *Context)) {
+func (g *RouterGroup) PATCH(relativePath string, f func(*Context)) {
 	g.RouterGroup.PATCH(relativePath, func(c *gin.Context) {
-		f(newContext(c))
+		f(&Context{c})
 	})
 }
 
-func (g *RouterGroup) DELETE(relativePath string, f func(c *Context)) {
+func (g *RouterGroup) DELETE(relativePath string, f func(*Context)) {
 	g.RouterGroup.DELETE(relativePath, func(c *gin.Context) {
-		f(newContext(c))
+		f(&Context{c})
 	})
 }
