@@ -18,5 +18,5 @@ type GenericInterface[M model.Interface] interface {
 }
 
 type ExampleRepoInterface interface {
-	GenericInterface[model.Example]
+	GenericInterface[model.Example] // 继承泛型接口
 }

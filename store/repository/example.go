@@ -8,13 +8,14 @@ import (
 )
 
 type exampleRepository struct {
-	*genericRepository[model.Example]
+	*genericRepository[model.Example] // 继承泛型实现
 }
 
 func NewExampleRepository() ExampleRepoInterface {
 	return &exampleRepository{newGenericRepository[model.Example]()}
 }
 
+// List 复写泛形实现
 func (r *exampleRepository) List(pq *paginate.Query) (*paginate.Data[model.Example], error) {
 	r.paginateData.Init(pq)
 	session := r.db.Model(new(model.Example)).Scopes(Paginate[model.Example](pq))
