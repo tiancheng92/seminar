@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"github.com/tiancheng92/seminar/pkg/log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -28,7 +29,11 @@ func Run() {
 		Handler: controllers.InitRouter(), // 处理器
 	}
 
-	go s.ListenAndServe()
+	go func() {
+		if err := s.ListenAndServe(); err != nil {
+			log.Fatalf("%+v", err)
+		}
+	}()
 
 	quit := make(chan os.Signal)
 	defer close(quit)
