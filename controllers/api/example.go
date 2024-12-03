@@ -7,12 +7,12 @@ import (
 	"github.com/tiancheng92/seminar/types/request"
 )
 
-type exampleSceneController struct {
+type exampleController struct {
 	*genericController[request.Example, model.Example]
 }
 
 func NewExampleSceneRouter(group *ginplus.RouterGroup) {
-	c := &exampleSceneController{newGenericController[request.Example, model.Example](service.NewExampleService())}
+	c := &exampleController{newGenericController[request.Example, model.Example](service.NewExampleService())}
 	g := group.Group("example")
 	{
 		g.GET(":pk", c.Get)
