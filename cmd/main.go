@@ -1,15 +1,14 @@
 package main
 
 import (
+	"github.com/spf13/cobra"
 	"github.com/tiancheng92/seminar/config"
 	"github.com/tiancheng92/seminar/pkg/log"
 	"github.com/tiancheng92/seminar/pkg/validator"
 	"github.com/tiancheng92/seminar/server"
 	"github.com/tiancheng92/seminar/store"
-	"os"
-
-	"github.com/spf13/cobra"
 	_ "go.uber.org/automaxprocs"
+	"os"
 )
 
 var rootCmd = &cobra.Command{

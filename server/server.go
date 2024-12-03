@@ -2,15 +2,14 @@ package server
 
 import (
 	"context"
+	"github.com/gin-gonic/gin"
+	"github.com/tiancheng92/seminar/config"
+	"github.com/tiancheng92/seminar/controllers"
 	"github.com/tiancheng92/seminar/pkg/log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
-
-	"github.com/gin-gonic/gin"
-	"github.com/tiancheng92/seminar/config"
-	"github.com/tiancheng92/seminar/controllers"
 )
 
 func Run() {

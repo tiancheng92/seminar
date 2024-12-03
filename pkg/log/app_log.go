@@ -1,15 +1,14 @@
 package log
 
 import (
-	"io"
-	"time"
-
 	"github.com/Yostardev/gf"
 	"github.com/Yostardev/json"
 	"github.com/fatih/color"
 	"github.com/tiancheng92/seminar/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"io"
+	"time"
 )
 
 var (

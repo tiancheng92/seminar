@@ -1,17 +1,16 @@
 package repository
 
 import (
-	"github.com/tiancheng92/seminar/pkg/errors/ecode"
-	"github.com/tiancheng92/seminar/store"
-	"github.com/tiancheng92/seminar/store/model"
-	"net/url"
-	"strings"
-
 	"github.com/Yostardev/gf"
 	"github.com/tiancheng92/seminar/pkg/errors"
+	"github.com/tiancheng92/seminar/pkg/errors/ecode"
 	"github.com/tiancheng92/seminar/pkg/log"
+	"github.com/tiancheng92/seminar/store"
+	"github.com/tiancheng92/seminar/store/model"
 	"github.com/tiancheng92/seminar/types/paginate"
 	"gorm.io/gorm"
+	"net/url"
+	"strings"
 )
 
 type genericRepository[M model.Interface] struct {

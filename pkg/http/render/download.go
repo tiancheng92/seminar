@@ -2,10 +2,9 @@ package render
 
 import (
 	"bytes"
-	"strconv"
-
 	"github.com/Yostardev/gf"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 func ResponseDownloadSteam(ctx *gin.Context, buf *bytes.Buffer, fileName string) {

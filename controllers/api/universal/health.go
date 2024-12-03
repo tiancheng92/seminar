@@ -1,9 +1,8 @@
 package universal
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func HealthCheck(ctx *gin.Context) {

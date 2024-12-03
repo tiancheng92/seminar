@@ -2,11 +2,10 @@ package render
 
 import (
 	"github.com/Yostardev/json"
-	"github.com/tiancheng92/seminar/pkg/errors"
-	"sync"
-
 	"github.com/gin-gonic/gin"
+	"github.com/tiancheng92/seminar/pkg/errors"
 	"github.com/tiancheng92/seminar/types/paginate"
+	"sync"
 )
 
 // PaginateInterface 定义分页接口
