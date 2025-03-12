@@ -20,6 +20,6 @@ type ReadOnlyGenericInterface[M model.Interface] interface {
 	Distinct(ctx *ginplus.Context, field string) ([]string, error)
 }
 
-//type ExampleServiceInterface interface {
-//	GenericInterface[model.Example]
-//}
+type ExampleServiceInterface interface {
+	GenericInterface[model.Example]
+}

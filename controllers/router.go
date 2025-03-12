@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
+	"github.com/tiancheng92/seminar/controllers/api"
 	"github.com/tiancheng92/seminar/controllers/api/universal"
 	ginplus "github.com/tiancheng92/seminar/pkg/gin-plus"
 	"github.com/tiancheng92/seminar/pkg/http/middleware/cross_domain"
@@ -30,9 +31,9 @@ func InitRouter() *ginplus.Engine {
 
 	r.GET("healthz", universal.HealthCheck)
 
-	//apiGroup := r.Group("api")
-	//{
-	//	api.NewExampleSceneRouter(apiGroup)
-	//}
+	apiGroup := r.Group("api")
+	{
+		api.NewExampleSceneRouter(apiGroup)
+	}
 	return r
 }

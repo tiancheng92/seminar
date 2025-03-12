@@ -1,20 +1,20 @@
 package repository
 
-//import (
-//	"github.com/tiancheng92/seminar/pkg/errors"
-//	"github.com/tiancheng92/seminar/pkg/errors/ecode"
-//	"github.com/tiancheng92/seminar/store/model"
-//	"github.com/tiancheng92/seminar/types/paginate"
-//)
-//
-//type exampleRepository struct {
-//	*genericRepository[model.Example] // 继承泛型实现
-//}
-//
-//func NewExampleRepository() ExampleRepoInterface {
-//	return &exampleRepository{newGenericRepository[model.Example]()}
-//}
-//
+import (
+	//"github.com/tiancheng92/seminar/pkg/errors"
+	//"github.com/tiancheng92/seminar/pkg/errors/ecode"
+	"github.com/tiancheng92/seminar/store/model"
+	//"github.com/tiancheng92/seminar/types/paginate"
+)
+
+type exampleRepository struct {
+	*genericRepository[model.Example] // 继承泛型实现
+}
+
+func NewExampleRepository() ExampleRepoInterface {
+	return &exampleRepository{newGenericRepository[model.Example]()}
+}
+
 //// List 复写泛形实现
 //func (r *exampleRepository) List(pq *paginate.Query) (*paginate.Data[model.Example], error) {
 //	r.paginateData.Init(pq)
