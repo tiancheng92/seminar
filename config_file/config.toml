@@ -4,5 +4,5 @@ log_level = "info"
 dsn = "root:@tcp(127.0.0.1:3306)/seminar?charset=utf8mb4&parseTime=true&loc=Local&interpolateParams=true"
 
 [server]
-mode = "release"
+mode = "debug"
 host = "0.0.0.0:8080"

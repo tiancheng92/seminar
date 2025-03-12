@@ -2,7 +2,6 @@ package store
 
 import (
 	"github.com/tiancheng92/seminar/config"
-	"github.com/tiancheng92/seminar/store/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -37,11 +36,11 @@ func initDefaultDB() {
 	sqlDB.SetMaxOpenConns(50)
 	sqlDB.SetConnMaxLifetime(5 * time.Minute)
 
-	if err = defaultDB.AutoMigrate(
-		new(model.Example),
-	); err != nil {
-		panic(err)
-	}
+	//if err = defaultDB.AutoMigrate(
+	//	new(model.Example),
+	//); err != nil {
+	//	panic(err)
+	//}
 
 	if config.GetConf().LogLevel == "debug" {
 		defaultDB = defaultDB.Debug()
