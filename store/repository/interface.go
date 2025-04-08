@@ -16,7 +16,3 @@ type GenericInterface[M model.Interface] interface {
 	All(params url.Values) ([]*M, error)
 	Distinct(field string) ([]string, error)
 }
-
-//type ExampleRepoInterface interface {
-//	GenericInterface[model.Example] // 继承泛型接口
-//}

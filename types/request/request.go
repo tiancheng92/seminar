@@ -16,14 +16,6 @@ type Header struct {
 	Authorization string `header:"Authorization" binding:"required"`
 }
 
-//type Example struct {
-//	Name          string              `json:"name" binding:"required"`
-//	Describe      string              `json:"describe" binding:"required"`
-//	Date          string              `json:"date" binding:"required,date_time_format=2006-01-02"`
-//	Number        int                 `json:"number" binding:"required"`
-//	JsonFieldList model.JsonFieldList `json:"json_field_list"`
-//}
-
 type Distinct struct {
 	Field string `uri:"field" binding:"required"`
 }
