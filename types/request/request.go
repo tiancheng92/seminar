@@ -21,7 +21,6 @@ type Example struct {
 	Describe string `json:"describe" binding:"required"`
 	Date     string `json:"date" binding:"required,date_time_format=2006-01-02"`
 	Number   int    `json:"number" binding:"required"`
-	//JsonFieldList model.JsonFieldList `json:"json_field_list"`
 }
 
 type Distinct struct {
