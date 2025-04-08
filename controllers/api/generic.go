@@ -86,7 +86,7 @@ func (roc *readOnlyGenericController[M]) All(ctx *ginplus.Context) {
 
 func (roc *readOnlyGenericController[M]) Distinct(ctx *ginplus.Context) {
 	p := new(request.Distinct)
-	ctx.BindParams(&p).HandleAndRender(func() (any, error) {
+	ctx.BindParams(p).HandleAndRender(func() (any, error) {
 		return roc.ReadOnlyGenericInterface.Distinct(ctx, p.Field)
 	})
 }
