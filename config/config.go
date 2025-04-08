@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 )
 
@@ -27,9 +26,7 @@ func Init() {
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err)
 	}
-	if err := viper.Unmarshal(&cfg, func(c *mapstructure.DecoderConfig) {
-		c.TagName = "toml"
-	}); err != nil {
+	if err := viper.Unmarshal(&cfg); err != nil {
 		panic(err)
 	}
 }
